@@ -4,10 +4,10 @@ package modelo;
 public class Dulce {
     // Atributos
     private String nombreDulce;
-    private categoriaDulce categoria;
+    private CategoriaDulce categoria;
 
     // Constructores
-    public Dulce(String nombreDulce, categoriaDulce categoria){
+    public Dulce(String nombreDulce, CategoriaDulce categoria){
         this.nombreDulce = nombreDulce;
         this.categoria = categoria;
     }
@@ -23,12 +23,12 @@ public class Dulce {
     }
 
 
-    public categoriaDulce getCategoriaDulce() {
+    public CategoriaDulce getCategoriaDulce() {
         return categoria;
     }
 
 
-    public void setCategoriaDulce(categoriaDulce categoria) {
+    public void setCategoriaDulce(CategoriaDulce categoria) {
         this.categoria = categoria;
     }
 

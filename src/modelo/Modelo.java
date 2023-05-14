@@ -8,25 +8,25 @@ public class Modelo {
     
     // Constructor de dulces por defecto
     public Modelo(){
-        Dulce dulce1 = new Dulce("Chocobreak", categoriaDulce.dulce);
+        Dulce dulce1 = new Dulce("Chocobreak", CategoriaDulce.DULCE);
         dulces.add(dulce1);
 
-        Dulce dulce2 = new Dulce("Revolcon", categoriaDulce.acido);
+        Dulce dulce2 = new Dulce("Revolcon", CategoriaDulce.ACIDO);
         dulces.add(dulce2);
 
-        Dulce dulce3 = new Dulce("Tosh", categoriaDulce.sinAzucar);
+        Dulce dulce3 = new Dulce("Tosh", CategoriaDulce.SINAZUCAR);
         dulces.add(dulce3);
         
     }
 
     // Metodo que permite agregar dulces
-    public void insertarDulces(String nombreDulce, categoriaDulce categoria){
+    public void insertarDulces(String nombreDulce, CategoriaDulce categoria){
         Dulce dulce = new Dulce(nombreDulce, categoria);
         dulces.add(dulce);
     }
 
     // Metodo que permite actualizar dulces
-    public void actualizarDulces(int indice, String nombreDulce, categoriaDulce categoria){
+    public void actualizarDulces(int indice, String nombreDulce, CategoriaDulce categoria){
         Dulce dulce = dulces.get(indice);
         dulce.setNombreDulce(nombreDulce);
         dulce.setCategoriaDulce(categoria);   
