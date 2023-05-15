@@ -145,7 +145,7 @@ public class ActualizarVista extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bgActualizar;
     public javax.swing.ButtonGroup btnGroupCategoria;
-    private javax.swing.JButton btnModificarDulce;
+    public javax.swing.JButton btnModificarDulce;
     public javax.swing.JComboBox<String> cbListaDulces;
     private javax.swing.JLabel lbCategoria;
     private javax.swing.JLabel lbNombre;

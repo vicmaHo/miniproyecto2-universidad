@@ -480,7 +480,7 @@ public class DulceriaVista extends javax.swing.JFrame {
     private javax.swing.JPanel btnEliminar;
     private javax.swing.JPanel btnInsertar;
     private javax.swing.JPanel btnLista;
-    private javax.swing.JPanel contenidoPrincipal;
+    public javax.swing.JPanel contenidoPrincipal;
     public javax.swing.JLabel lbActualizar;
     public javax.swing.JLabel lbBuscar;
     public javax.swing.JLabel lbEliminar;
