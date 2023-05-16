@@ -7,7 +7,9 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -124,6 +126,22 @@ public class Controlador implements ActionListener, MouseListener, ListSelection
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO: implementar detectores y funcionalidades de cada boton u otros componente
+        if (e.getSource() == menuInsertar.btnAgregarDulce){
+            String nombreDulce = menuInsertar.txtNombre.getText();
+            CategoriaDulce categoria = null;
+            if (menuInsertar.rbDulce.isSelected()){
+                categoria = CategoriaDulce.DULCE;
+            }else if(menuInsertar.rbAcido.isSelected()){
+                categoria = CategoriaDulce.ACIDO;
+            }else if (menuInsertar.rbSinAzucar.isSelected()){
+                categoria = CategoriaDulce.SINAZUCAR;
+            }
+            menuInsertar.btnGroupCategorias.clearSelection();
+            menuInsertar.txtNombre.setText("Nombre del dulce");
+            model.insertarDulces(nombreDulce, categoria);
+            JOptionPane.showMessageDialog(null, "¡Dulce agregado con éxito!", "Menu Insertar", JOptionPane.INFORMATION_MESSAGE);
+
+        }
         if (e.getSource() == menuActualizar.btnModificarDulce){
             String nombreDulce = menuActualizar.cbListaDulces.getSelectedItem().toString();
             String nombreNuevo = menuActualizar.txtNombre.getText();
