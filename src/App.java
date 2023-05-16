@@ -21,6 +21,7 @@ public class App {
                 menuEliminar, menuLista, modelo);
 
         controlador.iniciar();
+        modelo.listarDulces();
         menuPrincipal.setVisible(true);
     }
 }
