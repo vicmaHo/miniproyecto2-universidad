@@ -16,7 +16,18 @@ public class Modelo {
 
         Dulce dulce3 = new Dulce("Tosh", CategoriaDulce.SINAZUCAR);
         dulces.add(dulce3);
-        
+
+        Dulce dulce4 = new Dulce("Frunas", CategoriaDulce.DULCE);
+        dulces.add(dulce4);
+
+        Dulce dulce5 = new Dulce("BomBomBum", CategoriaDulce.DULCE);
+        dulces.add(dulce5);
+
+        Dulce dulce6 = new Dulce("Splot", CategoriaDulce.ACIDO);
+        dulces.add(dulce6);
+
+        Dulce dulce7 = new Dulce("Pirulito", CategoriaDulce.ACIDO);
+        dulces.add(dulce7);
     }
 
     // Metodo que permite agregar dulces
@@ -54,4 +65,17 @@ public class Modelo {
         }
     }
 
+    // Obtener el arraylist de los dulces
+    public ArrayList<Dulce> getDulces(){
+        return dulces;
+    }
+
+    // Crear una lista de Los nombres de los dulces y retornarla
+    public ArrayList<String> getNombresDulces(){
+        ArrayList<String> nombresDulces = new ArrayList<String>();
+        for (Dulce dulce : dulces) {
+            nombresDulces.add(dulce.getNombreDulce());
+        }
+        return nombresDulces;
+    }
 }

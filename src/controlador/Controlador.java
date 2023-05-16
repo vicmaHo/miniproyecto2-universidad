@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import modelo.CategoriaDulce;
+import modelo.Dulce;
 import modelo.Modelo;
 import vista.ActualizarVista;
 import vista.BuscarVista;
@@ -53,13 +55,23 @@ public class Controlador implements ActionListener, MouseListener, ListSelection
         // Componentes de menuInsertar
         this.menuInsertar.btnAgregarDulce.addActionListener(this);
 
-        // pruebas de otros componentes
+
+        // Componenentes de menuActulizar
         this.menuActualizar.btnModificarDulce.addActionListener(this);
+
+        // pruebas de otros componentesS
         this.menuLista.jList1.addListSelectionListener(this);
     }
 
     public void iniciar() {
         menuPrincipal.setTitle("Dulceria");
+    }
+
+    private void actualizarDulcesComboBoxesList(){
+        String[] dulcesDisponibles = model.getNombresDulces().toArray(new String[model.getNombresDulces().size()]);
+        menuActualizar.cbListaDulces.setModel(new javax.swing.DefaultComboBoxModel<>(dulcesDisponibles));
+        menuEliminar.cbListaDulces.setModel(new javax.swing.DefaultComboBoxModel<>(dulcesDisponibles));
+        menuLista.jList1.setModel(new javax.swing.DefaultComboBoxModel<>(dulcesDisponibles));
     }
 
     // Funcion que permite cambiar JPanel del contenido de la interfaz principal
@@ -78,12 +90,15 @@ public class Controlador implements ActionListener, MouseListener, ListSelection
         if (e.getSource() == menuPrincipal.lbInsertar) {
             cambiarPanelMenu(menuInsertar);
         } else if (e.getSource() == menuPrincipal.lbActualizar) {
+            actualizarDulcesComboBoxesList();
             cambiarPanelMenu(menuActualizar);
         }else if (e.getSource() == menuPrincipal.lbBuscar){
             cambiarPanelMenu(menuBuscar);
         }else if (e.getSource() == menuPrincipal.lbEliminar){
+            actualizarDulcesComboBoxesList();
             cambiarPanelMenu(menuEliminar);
         }else if(e.getSource() == menuPrincipal.lbLista){
+            actualizarDulcesComboBoxesList();
             cambiarPanelMenu(menuLista);
         }
     }
@@ -109,7 +124,31 @@ public class Controlador implements ActionListener, MouseListener, ListSelection
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO: implementar detectores y funcionalidades de cada boton u otros componente
-        System.out.println("Boton Presionado");
+        if (e.getSource() == menuActualizar.btnModificarDulce){
+            String nombreDulce = menuActualizar.cbListaDulces.getSelectedItem().toString();
+            String nombreNuevo = menuActualizar.txtNombre.getText();
+            // Obtengo la categoria
+            CategoriaDulce categoriaNueva = null;
+            if (menuActualizar.rbDulce.isSelected()){
+                categoriaNueva = CategoriaDulce.DULCE;
+            }else if(menuActualizar.rbAcido.isSelected()){
+                categoriaNueva = CategoriaDulce.ACIDO;
+            }else if (menuActualizar.rbSinAzucar.isSelected()){
+                categoriaNueva = CategoriaDulce.SINAZUCAR;
+            }
+            // Recorro la lsita de dulces para modificarlo
+            for (Dulce dulce : model.getDulces()) {
+                if (dulce.getNombreDulce().equals(nombreDulce)){
+                    dulce.setNombreDulce(nombreNuevo);
+                    dulce.setCategoriaDulce(categoriaNueva);
+                }
+            }
+            // Devuelvo el menu a sus valores por defecto y actualizo las listas de dulces
+            menuActualizar.btnGroupCategoria.clearSelection();
+            menuActualizar.txtNombre.setText("Nombre del dulce");
+            actualizarDulcesComboBoxesList();
+        }
+
     }
 
     // Funcionalidad de eventos para la JList
