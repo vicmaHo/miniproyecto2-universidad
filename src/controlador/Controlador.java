@@ -3,17 +3,12 @@ package controlador;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-
 import modelo.CategoriaDulce;
 import modelo.Dulce;
 import modelo.Modelo;
@@ -60,12 +55,11 @@ public class Controlador implements ActionListener, MouseListener, ListSelection
         // Componentes de menuBuscar
         this.menuBuscar.btnBuscar.addActionListener(this);
 
-
         // Componenentes de menuActulizar
         this.menuActualizar.btnModificarDulce.addActionListener(this);
 
         // pruebas de otros componentesS
-        this.menuLista.jList1.addListSelectionListener(this);
+        this.menuLista.lsLista.addListSelectionListener(this);
     }
 
     public void iniciar() {
@@ -76,7 +70,7 @@ public class Controlador implements ActionListener, MouseListener, ListSelection
         String[] dulcesDisponibles = model.getNombresDulces().toArray(new String[model.getNombresDulces().size()]);
         menuActualizar.cbListaDulces.setModel(new javax.swing.DefaultComboBoxModel<>(dulcesDisponibles));
         menuEliminar.cbListaDulces.setModel(new javax.swing.DefaultComboBoxModel<>(dulcesDisponibles));
-        menuLista.jList1.setModel(new javax.swing.DefaultComboBoxModel<>(dulcesDisponibles));
+        menuLista.lsLista.setModel(new javax.swing.DefaultComboBoxModel<>(dulcesDisponibles));
     }
 
     // Funcion que permite cambiar JPanel del contenido de la interfaz principal
@@ -105,6 +99,8 @@ public class Controlador implements ActionListener, MouseListener, ListSelection
             actualizarDulcesComboBoxesList();
             cambiarPanelMenu(menuEliminar);
         }else if(e.getSource() == menuPrincipal.lbLista){
+            menuLista.lsLista.clearSelection();
+            menuLista.txtCategoria.setText("");
             actualizarDulcesComboBoxesList();
             cambiarPanelMenu(menuLista);
         }
@@ -171,6 +167,7 @@ public class Controlador implements ActionListener, MouseListener, ListSelection
             menuActualizar.btnGroupCategoria.clearSelection();
             menuActualizar.txtNombre.setText("Nombre del dulce");
             actualizarDulcesComboBoxesList();
+            JOptionPane.showMessageDialog(menuPrincipal, String.format("Dulce %s ha sido modificado por %s",nombreDulce, nombreNuevo), "Modificación", JOptionPane.INFORMATION_MESSAGE);
         }
 
         if (e.getSource() == menuBuscar.btnBuscar){
@@ -190,8 +187,19 @@ public class Controlador implements ActionListener, MouseListener, ListSelection
     // Funcionalidad de eventos para la JList
     @Override
     public void valueChanged(ListSelectionEvent e) {
-        if(!e.getValueIsAdjusting()){
-            System.out.println("Elemento seleccionado");
+        if(!e.getValueIsAdjusting()){ // verifico que la seleccion de un elemento solo sea un evento
+            // System.out.println(menuLista.lsLista.getSelectedValue());
+            String nombreDulceSeleccionado = ""; // Inicializo la variable con una cadena vacia
+            if(!menuLista.lsLista.isSelectionEmpty()){ // En caso de que la liste no este selccionada no hara nada
+                nombreDulceSeleccionado = menuLista.lsLista.getSelectedValue(); // si esta seleccionada agrega el valor a la variable
+            }
+            // Recorremos la lista de dulces para comprobar cual es el dulce seleccionado
+            // y de este dulce extraemos su categoria y lo mostramos en el campo de texto
+            for (Dulce dulce : model.getDulces()) {
+                if(nombreDulceSeleccionado.equals(dulce.getNombreDulce())){
+                    menuLista.txtCategoria.setText(dulce.getCategoriaDulce().getElementoFormateado());
+                }
+            }
         }
     }
 }

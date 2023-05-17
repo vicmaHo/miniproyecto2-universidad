@@ -32,9 +32,9 @@ public class ListaVista extends javax.swing.JPanel {
         lbTitulo1 = new javax.swing.JLabel();
         lbSeleccion = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        lsLista = new javax.swing.JList<>();
         lbCategoria = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtCategoria = new javax.swing.JTextField();
 
         bg.setBackground(new java.awt.Color(255, 250, 244));
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -69,13 +69,13 @@ public class ListaVista extends javax.swing.JPanel {
         lbSeleccion.setText("Lista de todos los dulces disponibles y su categoria");
         bg.add(lbSeleccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, -1, -1));
 
-        jList1.setFont(new java.awt.Font("Calisto MT", 0, 18)); // NOI18N
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        lsLista.setFont(new java.awt.Font("Calisto MT", 0, 18)); // NOI18N
+        lsLista.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(jList1);
+        jScrollPane2.setViewportView(lsLista);
 
         bg.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 120, 280));
 
@@ -83,14 +83,14 @@ public class ListaVista extends javax.swing.JPanel {
         lbCategoria.setText("Categoria");
         bg.add(lbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 240, -1, -1));
 
-        jTextField1.setEditable(false);
-        jTextField1.setFont(new java.awt.Font("Calisto MT", 0, 18)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtCategoria.setEditable(false);
+        txtCategoria.setFont(new java.awt.Font("Calisto MT", 0, 18)); // NOI18N
+        txtCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
-        bg.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, 160, -1));
+        bg.add(txtCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, 160, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -111,9 +111,9 @@ public class ListaVista extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
-    public javax.swing.JList<String> jList1;
+    public javax.swing.JList<String> lsLista;
     private javax.swing.JScrollPane jScrollPane2;
-    public javax.swing.JTextField jTextField1;
+    public javax.swing.JTextField txtCategoria;
     private javax.swing.JLabel lbCategoria;
     private javax.swing.JLabel lbSeleccion;
     private javax.swing.JLabel lbTitulo1;
