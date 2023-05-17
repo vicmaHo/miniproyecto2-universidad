@@ -79,7 +79,7 @@ public class Modelo {
             // Se convierte el nombre del dulce en mayusculas y se verifica si es igual al nombre del dulce a buscar en el arraylist
             if(dulce.getNombreDulce().toUpperCase().equals(nombreDulce)){
                 // Si se encuentra el dulce, se asignan los datos y se marca como encontrado
-                datos = "Nombre Dulce: " + dulce.getNombreDulce() + "\nCategoria: " + dulce.getCategoriaDulce();
+                datos = "Nombre Dulce: " + dulce.getNombreDulce() + "\nCategoria: " + dulce.getCategoriaDulce().getElementoFormateado();
                 existeDulce = true;
                 break; // Salir del bucle una vez que se encuentra el dulce
             }

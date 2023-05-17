@@ -132,8 +132,9 @@ public class Controlador implements ActionListener, MouseListener, ListSelection
     public void actionPerformed(ActionEvent e) {
         // TODO: implementar detectores y funcionalidades de cada boton u otros componente
         if (e.getSource() == menuInsertar.btnAgregarDulce){
-            String nombreDulce = menuInsertar.txtNombre.getText();
+            String nombreDulce = menuInsertar.txtNombre.getText(); // Se obtiene el nombre del dulce desde el campo de texto
             CategoriaDulce categoria = null;
+            // Se Verifica qué opción de categoría está seleccionada y asignar la categoría correspondiente
             if (menuInsertar.rbDulce.isSelected()){
                 categoria = CategoriaDulce.DULCE;
             }else if(menuInsertar.rbAcido.isSelected()){
@@ -141,11 +142,11 @@ public class Controlador implements ActionListener, MouseListener, ListSelection
             }else if (menuInsertar.rbSinAzucar.isSelected()){
                 categoria = CategoriaDulce.SINAZUCAR;
             }
+            model.insertarDulces(nombreDulce, categoria); // Se envia nombre del dulce y la categoría para agregarlo al arraylist
+            JOptionPane.showMessageDialog(null, "¡Dulce agregado con éxito!", "Menu Insertar", JOptionPane.INFORMATION_MESSAGE);
+            // Devuelvo el menu a sus valores por defecto
             menuInsertar.btnGroupCategorias.clearSelection();
             menuInsertar.txtNombre.setText("Nombre del dulce");
-            model.insertarDulces(nombreDulce, categoria);
-            JOptionPane.showMessageDialog(null, "¡Dulce agregado con éxito!", "Menu Insertar", JOptionPane.INFORMATION_MESSAGE);
-
         }
         
         if (e.getSource() == menuActualizar.btnModificarDulce){
