@@ -52,6 +52,9 @@ public class Controlador implements ActionListener, MouseListener, ListSelection
         // Componentes de menuInsertar
         this.menuInsertar.btnAgregarDulce.addActionListener(this);
 
+        // Componentes de menuBuscar
+        this.menuBuscar.btnBuscar.addActionListener(this);
+
         // Componenentes de menuActulizar
         this.menuActualizar.btnModificarDulce.addActionListener(this);
 
@@ -90,6 +93,8 @@ public class Controlador implements ActionListener, MouseListener, ListSelection
             cambiarPanelMenu(menuActualizar);
         }else if (e.getSource() == menuPrincipal.lbBuscar){
             cambiarPanelMenu(menuBuscar);
+            menuBuscar.jTextArea1.setText("");
+            menuBuscar.txtNombre.setText("Nombre del dulce");
         }else if (e.getSource() == menuPrincipal.lbEliminar){
             actualizarDulcesComboBoxesList();
             cambiarPanelMenu(menuEliminar);
@@ -138,6 +143,7 @@ public class Controlador implements ActionListener, MouseListener, ListSelection
             JOptionPane.showMessageDialog(null, "¡Dulce agregado con éxito!", "Menu Insertar", JOptionPane.INFORMATION_MESSAGE);
 
         }
+        
         if (e.getSource() == menuActualizar.btnModificarDulce){
             String nombreDulce = menuActualizar.cbListaDulces.getSelectedItem().toString();
             String nombreNuevo = menuActualizar.txtNombre.getText();
@@ -163,6 +169,18 @@ public class Controlador implements ActionListener, MouseListener, ListSelection
             actualizarDulcesComboBoxesList();
             JOptionPane.showMessageDialog(menuPrincipal, String.format("Dulce %s ha sido modificado por %s",nombreDulce, nombreNuevo), "Modificación", JOptionPane.INFORMATION_MESSAGE);
         }
+
+        if (e.getSource() == menuBuscar.btnBuscar){
+
+            String buscar = menuBuscar.txtNombre.getText();
+            buscar = buscar.toUpperCase(); //Se convierte en mayusculas la variable buscar 
+            //Se envia en el textArea los datos que retorna el metodo buscarDulcesPorNombre 
+            menuBuscar.jTextArea1.setText(model.buscarDulcesPorNombre(buscar)); 
+        
+            // Restablecer el texto del campo de texto txtNombre a "Nombre del dulce"
+            menuBuscar.txtNombre.setText("Nombre del dulce");
+        }
+        
 
     }
 
