@@ -46,8 +46,29 @@ public class Modelo {
     }
 
     //Metodo que permite eliminar dulces
-    public void eliminarDulces(int indice){
-        dulces.remove(indice);
+    public Dulce eliminarDulces(String nombreDulce) {
+        for (int i = 0; i < dulces.size(); i++) {
+            Dulce dulce = dulces.get(i);
+            if (dulce.getNombreDulce().equals(nombreDulce)) {
+                dulces.remove(i);
+                return dulce; // Retorna el dulce eliminado si es necesario
+            }
+        }
+        return null; // Retorna null si no se encuentra el dulce en la lista
+    }
+
+    public String mostrarInformacionDulce(String nombreDulce) {
+        for (Dulce dulce : dulces) {
+            if (dulce.getNombreDulce().equals(nombreDulce)) {
+                String informacion = String.format("Nombre del dulce: %s\n" +
+                                                   "Categoría del dulce: %s\n",
+                                                   dulce.getNombreDulce(),
+                                                   dulce.getCategoriaDulce());
+                return informacion;
+            }
+        }
+        // Si no se encuentra el dulce, se puede devolver un mensaje de error o una cadena vacía
+        return "No se encontró información para el dulce seleccionado.";
     }
 
     //Metodo que permite buscar dulces por nombre

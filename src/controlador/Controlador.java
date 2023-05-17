@@ -51,6 +51,10 @@ public class Controlador implements ActionListener, MouseListener, ListSelection
 
         // Componentes de menuInsertar
         this.menuInsertar.btnAgregarDulce.addActionListener(this);
+        
+        // cmponente de menuEliminar
+        this.menuEliminar.btnModificarDulce.addActionListener(this); // botoneliminar
+        this.menuEliminar.cbListaDulces.addActionListener(this);// jcombox eliminar 
 
         // Componentes de menuBuscar
         this.menuBuscar.btnBuscar.addActionListener(this);
@@ -180,8 +184,26 @@ public class Controlador implements ActionListener, MouseListener, ListSelection
             // Restablecer el texto del campo de texto txtNombre a "Nombre del dulce"
             menuBuscar.txtNombre.setText("Nombre del dulce");
         }
-        
 
+        if (e.getSource() == menuEliminar.btnModificarDulce){
+            String nombreDulce = (String) menuEliminar.cbListaDulces.getSelectedItem();
+
+            if (nombreDulce != null) {
+                model.eliminarDulces(nombreDulce);
+                menuEliminar.txtInformacion.setText("");
+                JOptionPane.showMessageDialog(menuPrincipal, String.format("Dulce %s ha sido eliminado", nombreDulce), "Eliminación", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(menuPrincipal, "No hay dulces para eliminar", "Eliminación", JOptionPane.INFORMATION_MESSAGE);
+            } 
+
+            actualizarDulcesComboBoxesList();
+        }
+        
+        if (e.getSource() == menuEliminar.cbListaDulces) {
+            String nombreDulce = menuEliminar.cbListaDulces.getSelectedItem().toString();
+            String informacion = model.mostrarInformacionDulce(nombreDulce);
+            menuEliminar.txtInformacion.setText(informacion);
+        }
     }
 
     // Funcionalidad de eventos para la JList
