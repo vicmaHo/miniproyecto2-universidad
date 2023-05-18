@@ -40,7 +40,6 @@ public class Controlador implements ActionListener, MouseListener, ListSelection
         this.menuLista = menuLista;
         this.model = model;
 
-        // TODO: agregar listeners a los componenentes de cada menu
         // Agrego eveentos a los componentes
         // Lb Para cambiar de menu
         this.menuPrincipal.lbInsertar.addMouseListener(this);
@@ -53,7 +52,7 @@ public class Controlador implements ActionListener, MouseListener, ListSelection
         this.menuInsertar.btnAgregarDulce.addActionListener(this);
         
         // cmponente de menuEliminar
-        this.menuEliminar.btnModificarDulce.addActionListener(this); // botoneliminar
+        this.menuEliminar.btnEliminarDulce.addActionListener(this); // botoneliminar
         this.menuEliminar.cbListaDulces.addActionListener(this);// jcombox eliminar 
 
         // Componentes de menuBuscar
@@ -62,7 +61,7 @@ public class Controlador implements ActionListener, MouseListener, ListSelection
         // Componenentes de menuActulizar
         this.menuActualizar.btnModificarDulce.addActionListener(this);
 
-        // pruebas de otros componentesS
+        // Componenentes del menuLista
         this.menuLista.lsLista.addListSelectionListener(this);
     }
 
@@ -70,14 +69,19 @@ public class Controlador implements ActionListener, MouseListener, ListSelection
         menuPrincipal.setTitle("Dulceria");
     }
 
+    /* Agrego a los ComboBox y a los JList los items que corresponden a los nombres de los dulces
+    que estan disponibles en el programa. Esta asigancion se hace usando el getNombresDulces del modelo
+    */
     private void actualizarDulcesComboBoxesList(){
-        String[] dulcesDisponibles = model.getNombresDulces().toArray(new String[model.getNombresDulces().size()]);
-        menuActualizar.cbListaDulces.setModel(new javax.swing.DefaultComboBoxModel<>(dulcesDisponibles));
-        menuEliminar.cbListaDulces.setModel(new javax.swing.DefaultComboBoxModel<>(dulcesDisponibles));
-        menuLista.lsLista.setModel(new javax.swing.DefaultComboBoxModel<>(dulcesDisponibles));
+        menuActualizar.cbListaDulces.setModel(new javax.swing.DefaultComboBoxModel<>(model.getNombresDulces()));
+        menuEliminar.cbListaDulces.setModel(new javax.swing.DefaultComboBoxModel<>(model.getNombresDulces()));
+        menuLista.lsLista.setModel(new javax.swing.DefaultComboBoxModel<>(model.getNombresDulces()));
     }
 
-    // Funcion que permite cambiar JPanel del contenido de la interfaz principal
+    /*Funcion que permite cambiar de panel(menu). Le mando como argumetno el menu al que quiero cambiar
+    y se encarga de asiganrle un tamaño, borrar lo que ya existe en el panel de contenido y agregar el panel
+    nuevo correspondiente al menu
+    */
     private void cambiarPanelMenu(JPanel p) {
         p.setSize(600,480);
         p.setLocation(0,0);
@@ -87,7 +91,7 @@ public class Controlador implements ActionListener, MouseListener, ListSelection
         menuPrincipal.contenidoPrincipal.repaint();
     }
 
-    // Eventos para cambiar el menu
+    // Eventos para cambiar el menu, usando un mouseClicked como listener para los Labels correspondientes a cada menu
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == menuPrincipal.lbInsertar) {
@@ -109,28 +113,23 @@ public class Controlador implements ActionListener, MouseListener, ListSelection
             cambiarPanelMenu(menuLista);
         }
     }
-
-    // Metodos de MouseListener
+    // Metodos de MouseListener (Otros metodos que no son implementados)
     @Override
     public void mousePressed(MouseEvent e) {
     }
-
     @Override
     public void mouseReleased(MouseEvent e) {
     }
-
     @Override
     public void mouseEntered(MouseEvent e) {
     }
-
     @Override
     public void mouseExited(MouseEvent e) {
     }
 
-    // Listener de eventos para botones etc
+    // Listener de los eventos correspondientes a los botones y al combobox
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO: implementar detectores y funcionalidades de cada boton u otros componente
         if (e.getSource() == menuInsertar.btnAgregarDulce){
             String nombreDulce = menuInsertar.txtNombre.getText(); // Se obtiene el nombre del dulce desde el campo de texto
             CategoriaDulce categoria = null;
@@ -149,6 +148,13 @@ public class Controlador implements ActionListener, MouseListener, ListSelection
             menuInsertar.txtNombre.setText("Nombre del dulce");
         }
         
+        /*Evento del menu modificar dulce: Se crean dos variables String, una recibe el nombre del dulce
+        el cual viene del item que este seleccionado del combobox y otra recibe el nombreNuevo a traves del textfield
+        posteriomente se comprueba cual de las categorias es la seleccionada y se asigna a una variable. Despues
+        se recorre la lista de dulces verificando cual coincide con el nombre, y a traves de sus metodos set
+        se modifican sus atributos. Por ultimo se borra la seleccion del combobox y se reestablece el textfield
+        se actualizan todas las listas de dulces y se muestra un mensaje.
+         */
         if (e.getSource() == menuActualizar.btnModificarDulce){
             String nombreDulce = menuActualizar.cbListaDulces.getSelectedItem().toString();
             String nombreNuevo = menuActualizar.txtNombre.getText();
@@ -176,7 +182,6 @@ public class Controlador implements ActionListener, MouseListener, ListSelection
         }
 
         if (e.getSource() == menuBuscar.btnBuscar){
-
             String buscar = menuBuscar.txtNombre.getText();
             buscar = buscar.toUpperCase(); //Se convierte en mayusculas la variable buscar 
             //Se envia en el textArea los datos que retorna el metodo buscarDulcesPorNombre 
@@ -186,7 +191,7 @@ public class Controlador implements ActionListener, MouseListener, ListSelection
             menuBuscar.txtNombre.setText("Nombre del dulce");
         }
 
-        if (e.getSource() == menuEliminar.btnModificarDulce){
+        if (e.getSource() == menuEliminar.btnEliminarDulce){
             String nombreDulce = (String) menuEliminar.cbListaDulces.getSelectedItem();
 
             if (nombreDulce != null) {
@@ -199,7 +204,7 @@ public class Controlador implements ActionListener, MouseListener, ListSelection
 
             actualizarDulcesComboBoxesList();
         }
-        
+
         if (e.getSource() == menuEliminar.cbListaDulces) {
             String nombreDulce = menuEliminar.cbListaDulces.getSelectedItem().toString();
             String informacion = model.mostrarInformacionDulce(nombreDulce);
@@ -207,9 +212,15 @@ public class Controlador implements ActionListener, MouseListener, ListSelection
         }
     }
 
-    // Funcionalidad de eventos para la JList
+    // Listener para el JList del menu Lista
     @Override
     public void valueChanged(ListSelectionEvent e) {
+        /*Creo una variable String a la cual se le asigna posteriormente el valor seleccionado
+        cuando se hace click en algun elemento del JList, posteriormente verifica el valor correspondiente a ese
+        elemento, iterando en la list de dulces y comparando con el nombre. Cuando encuentra el objeto
+        de tipo Dulce correspondiente, asigna el String que se encuentra en su categoria a el campo de texto
+        con el fin de mostar la categoria del dulce seleccionado.
+         */
         if(!e.getValueIsAdjusting()){ // verifico que la seleccion de un elemento solo sea un evento
             // System.out.println(menuLista.lsLista.getSelectedValue());
             String nombreDulceSeleccionado = ""; // Inicializo la variable con una cadena vacia

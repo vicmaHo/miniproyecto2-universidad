@@ -105,12 +105,15 @@ public class Modelo {
         return dulces;
     }
 
-    // Crear una lista de Los nombres de los dulces y retornarla
-    public ArrayList<String> getNombresDulces(){
-        ArrayList<String> nombresDulces = new ArrayList<String>();
-        for (Dulce dulce : dulces) {
-            nombresDulces.add(dulce.getNombreDulce());
+    /* Funcion que permite obtener un array con los nombres de los dulces. Creo un array 
+     de Strings y le asigno el tamaño de la cantidad de dulces que existen, posteriormente
+     con un for recorro el array asigando en cada posición el nombre del dulce al que correspondiente
+    */
+    public String[] getNombresDulces(){
+        String[] strArray = new String[dulces.size()];;
+        for (int i = 0; i < dulces.size(); i++) {
+            strArray[i] = dulces.get(i).getNombreDulce();
         }
-        return nombresDulces;
+        return strArray;
     }
 }
