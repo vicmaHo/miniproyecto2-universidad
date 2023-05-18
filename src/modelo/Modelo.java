@@ -57,13 +57,14 @@ public class Modelo {
         return null; // Retorna null si no se encuentra el dulce en la lista
     }
 
+    //  Metodo que permite mostrar la informacion de un dulce en especifico
     public String mostrarInformacionDulce(String nombreDulce) {
         for (Dulce dulce : dulces) {
             if (dulce.getNombreDulce().equals(nombreDulce)) {
-                String informacion = String.format("Nombre del dulce: %s\n" +
-                                                   "Categoría del dulce: %s\n",
+                String informacion = String.format("Nombre: %s\n" +
+                                                   "Categoría: %s\n",
                                                    dulce.getNombreDulce(),
-                                                   dulce.getCategoriaDulce());
+                                                   dulce.getCategoriaDulce().getElementoFormateado());
                 return informacion;
             }
         }
