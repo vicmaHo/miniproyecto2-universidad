@@ -23,6 +23,6 @@ public class App {
         controlador.iniciar();
         modelo.listarDulces();
         menuPrincipal.setVisible(true);
-
+        
     }
 }
