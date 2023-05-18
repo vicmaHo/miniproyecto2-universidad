@@ -191,7 +191,13 @@ public class Controlador implements ActionListener, MouseListener, ListSelection
             menuBuscar.txtNombre.setText("Nombre del dulce");
         }
 
-        // se detecta el boton eliminar
+         /*Evento del menu eliminar dulce: lo primera condicion es detectar el boton eliminar, este primero va a 
+         asegurarse de que haya un elemento seleccionado en el jcombox, el cual se guarda en un string llamado
+         nombreDulce,justo debajo se mostrara la informacion de ese dulce, despues se verificara que verdaderamente haya algo que seleccionar, 
+         si lo hay se procedera a eliminar ese elemento seleccionado y limpiar el apartado de informacion del dulces, y por ultimo
+         se actualizara la el jcombox de los dulces quitando el dulces elimnado, dado caso que no haya ningun dulce que eliminar
+         al verificar se mostrar una ventana que dira que no hay dulces que eliminar.
+         */
         if (e.getSource() == menuEliminar.btnEliminarDulce){
             // se detecta el dulce seleccionado en el jcombox
             String nombreDulce = (String) menuEliminar.cbListaDulces.getSelectedItem(); 

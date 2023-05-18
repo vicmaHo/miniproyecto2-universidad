@@ -38,7 +38,13 @@ Al finalizar el proceso de modificación, se realizan algunas tareas adicionales
 En este método se obtiene el texto ingresado en un campo de texto y se almacena en la variable buscar, se convierte la variable buscar a mayúsculas utilizando el método toUpperCase() con el fin de evitar conflictos en la búsqueda del dulce. Despues se llama al método buscarDulcesPorNombre del objeto model, se le pasa la variable buscar como argumento para realizar la búsqueda de dulces por nombre. Si el dulce a buscar existe en el arraylist este devuelve una cadena de texto con los datos del dulce, el cual se muestra en el textArea, si el dulce no existe sale un mensaje emergente de error, el cual indica que el dulce no existe, finalmente se realiza limpieza en el menú buscar. 
 
 ### Eliminar Dulces
-....
+El menu de eliminar dulces presenta tres campos a la vista un comboBox, un panel de texto, y boton de eliminar, 
+en el comboBox se van a mostrar los nombres de los dulces disponibles, el usuario tendra que seleccionar el dulces que desea eliminar una vez seleccionado se mostrara en el panel de texto la informacion de ese dulce seleccionado, 
+la informacion solo consta del nombre del dulce seleccionado y su categoria, una vez hecho esto el usuario tendra que presionar el boton eliminar que eliminara el dulce seleccionado. La seleecion del dulce del combobox se guarda
+en un string llamdo nombreDulce, este pasara por una verificacion que comprueba que no sea nulo, si no lo es se eliminara con el metodo eliminarDulces del modelo y que se limpiara el apartado de la informacion una vez eliminado,
+despues se actualizara la lista del combobox quitando el dulce elimnado, dado el caso que no quede ningun dulce
+la comprobacion detectara que el string es nulo y lanzara una ventana diciendo que no hay ningun dulce para eliminar.
+
 ### Lista de dulces 
 El menú de Lista de dulces muestra una lista de nombres de dulces junto con sus respectivas categorías. Para manejar los eventos de este menú, se utiliza un ListSelectionEvent que se activa cada vez que se selecciona un elemento de la lista, la cual está implementada utilizando un JList.
 Cuando se selecciona un nombre de dulce en el JList, se almacena dicho nombre en una variable. A continuación, se recorre la lista de dulces perteneciente al modelo y se compara el nombre del dulce seleccionado con los nombres de cada dulce en la lista. Una vez se encuentra se utiliza el método setText en el campo de texto correspondiente. Este método establece en el campo de texto la categoría del dulce seleccionado, utilizando un método personalizado definido en el enum "CategoriaDulce". Este método retorna un string con un formato más legible y amigable para el usuario.
