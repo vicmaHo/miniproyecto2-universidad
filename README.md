@@ -1,18 +1,22 @@
-## Getting Started
+# Miniproyecto2
+# _Integrantes_
+- Alex Garcia Castañeda - 2259517
+- Yessica Fernanda Villa Nuñez - 2266301
+- Victor Manuel Hernandez Ortiz - 2259520
+**Link de trello - espacio de gestion del proyecto**
+https://trello.com/invite/b/hrVSBSaz/ATTIacb94b328caa6d92368019233f995a4f59A340D2/miniproyecto-ii
+# _Enunciado del miniproyecto_
+Vamos a hacer la gestión de una tienda de dulces
+La aplicación debe permitir las siguiente opciones:
+1. Insertar nuevos dulces
+2. Actualizar dulces
+3. Eliminar dulces
+4. Buscar dulces por nombre
+5. Listar todas los dulces
+Un dulce tiene un nombre y una categoría (dulce, ácido, sin azúcar). Aplicar los conceptos
+vistos en clase y generar la interfaz gráfica para realizar esta gestión. La interfaz debe tener un
+botón que al presionarlo, se mostrará un resumen de todos los dulces creados dentro de un
+área de texto.
+## _Descripcion geneal del funcionamiento del programa_
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
-
-## Folder Structure
-
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+## _Descripcion del funcionamiento de las funciones principales_
