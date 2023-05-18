@@ -132,7 +132,8 @@ public class Controlador implements ActionListener, MouseListener, ListSelection
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == menuInsertar.btnAgregarDulce){
             String nombreDulce = menuInsertar.txtNombre.getText(); // Se obtiene el nombre del dulce desde el campo de texto
-            CategoriaDulce categoria = null;
+            // la categoria sera dulce por defecto por si el usuario no selecciona alguna casilla
+            CategoriaDulce categoria = CategoriaDulce.DULCE;
             // Se Verifica qué opción de categoría está seleccionada y asignar la categoría correspondiente
             if (menuInsertar.rbDulce.isSelected()){
                 categoria = CategoriaDulce.DULCE;
@@ -159,7 +160,9 @@ public class Controlador implements ActionListener, MouseListener, ListSelection
             String nombreDulce = menuActualizar.cbListaDulces.getSelectedItem().toString();
             String nombreNuevo = menuActualizar.txtNombre.getText();
             // Obtengo la categoria
-            CategoriaDulce categoriaNueva = null;
+            // por defecto sera dulce, en caso de que el usuario no seleccione alguna categoria
+            // con el fin de que no se rompa el programa
+            CategoriaDulce categoriaNueva = CategoriaDulce.DULCE;
             if (menuActualizar.rbDulce.isSelected()){
                 categoriaNueva = CategoriaDulce.DULCE;
             }else if(menuActualizar.rbAcido.isSelected()){
