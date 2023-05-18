@@ -32,7 +32,7 @@ public class EliminarVista extends javax.swing.JPanel {
         lbTitulo1 = new javax.swing.JLabel();
         lbSeleccion = new javax.swing.JLabel();
         cbListaDulces = new javax.swing.JComboBox<>();
-        btnModificarDulce = new javax.swing.JButton();
+        btnEliminarDulce = new javax.swing.JButton();
         txtInformacion = new javax.swing.JTextField();
         lbSeleccion1 = new javax.swing.JLabel();
         lbEquis = new javax.swing.JLabel();
@@ -74,14 +74,14 @@ public class EliminarVista extends javax.swing.JPanel {
         cbListaDulces.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         bg.add(cbListaDulces, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, -1, -1));
 
-        btnModificarDulce.setFont(new java.awt.Font("Calisto MT", 0, 18)); // NOI18N
-        btnModificarDulce.setText("Eliminar Dulce");
-        btnModificarDulce.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminarDulce.setFont(new java.awt.Font("Calisto MT", 0, 18)); // NOI18N
+        btnEliminarDulce.setText("Eliminar Dulce");
+        btnEliminarDulce.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarDulceActionPerformed(evt);
             }
         });
-        bg.add(btnModificarDulce, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, -1, -1));
+        bg.add(btnEliminarDulce, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, -1, -1));
 
         txtInformacion.setEditable(false);
         txtInformacion.setFont(new java.awt.Font("Calisto MT", 0, 18)); // NOI18N
@@ -120,7 +120,7 @@ public class EliminarVista extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
-    public javax.swing.JButton btnModificarDulce;
+    public javax.swing.JButton btnEliminarDulce;
     public javax.swing.JComboBox<String> cbListaDulces;
     private javax.swing.JLabel lbEquis;
     private javax.swing.JLabel lbSeleccion;
