@@ -186,9 +186,12 @@ public class Controlador implements ActionListener, MouseListener, ListSelection
             menuBuscar.txtNombre.setText("Nombre del dulce");
         }
 
+        // se detecta el boton eliminar
         if (e.getSource() == menuEliminar.btnModificarDulce){
-            String nombreDulce = (String) menuEliminar.cbListaDulces.getSelectedItem();
+            // se detecta el dulce seleccionado en el jcombox
+            String nombreDulce = (String) menuEliminar.cbListaDulces.getSelectedItem(); 
 
+            // se verifica si hay un dulce seleccionado y se procede a eliminar
             if (nombreDulce != null) {
                 model.eliminarDulces(nombreDulce);
                 menuEliminar.txtInformacion.setText("");
@@ -197,9 +200,11 @@ public class Controlador implements ActionListener, MouseListener, ListSelection
                 JOptionPane.showMessageDialog(menuPrincipal, "No hay dulces para eliminar", "Eliminación", JOptionPane.INFORMATION_MESSAGE);
             } 
 
+            // se actualiza el jcombox con los dulces restantes
             actualizarDulcesComboBoxesList();
         }
         
+        // Detecta si se selecciono algo en el jcombox del menu elimnar una vez detectado muestra la informacion del ducle en el panel de abajo
         if (e.getSource() == menuEliminar.cbListaDulces) {
             String nombreDulce = menuEliminar.cbListaDulces.getSelectedItem().toString();
             String informacion = model.mostrarInformacionDulce(nombreDulce);
