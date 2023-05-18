@@ -192,7 +192,7 @@ public class Controlador implements ActionListener, MouseListener, ListSelection
         }
 
         // se detecta el boton eliminar
-        if (e.getSource() == menuEliminar.btnModificarDulce){
+        if (e.getSource() == menuEliminar.btnEliminarDulce){
             // se detecta el dulce seleccionado en el jcombox
             String nombreDulce = (String) menuEliminar.cbListaDulces.getSelectedItem(); 
 
